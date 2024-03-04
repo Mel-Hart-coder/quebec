@@ -1,0 +1,36 @@
+<%- include('partials/html-start.ejs') %>
+
+<h1>Hello World from EJS.</h1>
+
+<p>I\'m Logan Beckman.</p>
+    
+<p><%= myResultClient.length %></p>
+
+<% for (var i=0; i< myResultClient.length; i++ ) { %>
+
+    <li> <%= myResultClient[i].userName %> </li>
+
+<% } %> 
+
+<li> I be <%= myTypeClient %>, good at mullet, bad at stop talking.</p>
+
+    <form method="get" action="/name">
+        <p>Tell us your name! Or something: </p>
+        <input type="text" name="ejsFormName" value=" <%=myTypeClient %> "> 
+        <input type="submit">
+      </form>
+
+
+
+    <footer> sent from a file on my node server, yo!
+
+    <a href="/send">send</a>
+    <a href="https://github.com/LoganBeckman21/legendary-fortnight-MikeLab"> Source Code</a>
+
+
+</footer>
+
+<button class="btn btn-primary">boostrap working?</button>
+
+
+<%- include('partials/html-end.ejs') %>
