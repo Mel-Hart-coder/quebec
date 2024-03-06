@@ -85,7 +85,52 @@ app.post('/addBook', async (req, res) =>{
 })
 
 
+app.post('/updateBook/:id', async (req, res) => {
 
+  try {
+    console.log("req.parms.id: ", req.params.id) 
+    
+    client.connect; 
+    const collection = client.db("mels-books").collection("books-collection");
+    let result = await collection.findOneAndUpdate( 
+      {"_id": ObjectId(req.params.id)}, { $set: {"bookName": "Percy Jackson" } }
+    )
+    .then(result => {
+      console.log(result); 
+      res.redirect('/');
+    })
+    .catch(error => console.error(error))
+  }
+  finally{
+    //client.close()
+  }
+
+})
+
+
+app.post('/deleteBook/:id', async (req, res) => {
+
+  try {
+    console.log("req.parms.id: ", req.params.id) 
+    
+    client.connect; 
+    const collection = client.db("mels-books").collection("books-collection");
+    let result = await collection.findOneAndDelete( 
+      {
+        "_id": ObjectId(req.params.id)
+      }
+    )
+    .then(result => {
+      console.log(result); 
+      res.redirect('/');
+    })
+    .catch(error => console.error(error))
+  }
+  finally{
+    //client.close()
+  }
+
+})
 
 
 
