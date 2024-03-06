@@ -4,6 +4,7 @@ const app = express()
 const port = process.env.PORT || 5500;
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const bodyParser = require('body-parser')
+
 // set the view engine to ejs
 let path = require('path');
 
@@ -92,8 +93,9 @@ app.post('/updateBook/:id', async (req, res) => {
     
     client.connect; 
     const collection = client.db("mels-books").collection("books-collection");
+    const ObjectId = require('mongodb').ObjectId;
     let result = await collection.findOneAndUpdate( 
-      {"_id": ObjectId(req.params.id)}, { $set: {"bookName": "Percy Jackson" } }
+      {"_id": new ObjectId(req.params.id)}, { $set: {"bookName": "Percy Jackson" } }
     )
     .then(result => {
       console.log(result); 
@@ -115,9 +117,13 @@ app.post('/deleteBook/:id', async (req, res) => {
     
     client.connect; 
     const collection = client.db("mels-books").collection("books-collection");
+    const ObjectId = require('mongodb').ObjectId;
+    
+
+    
     let result = await collection.findOneAndDelete( 
       {
-        "_id": ObjectId(req.params.id)
+        "_id": new ObjectId(req.params.id)
       }
     )
     .then(result => {

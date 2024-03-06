@@ -21,7 +21,7 @@
 
 <h3> Current Books</h3>
 <% for (var i=0; i< bookData.length; i++ ) { %>
-    <form method="POST" action="/deleteBookk/<%= bookData[i]._id %>" style="display: inline-block">
+    <form method="POST" action="/deleteBook/<%= bookData[i]._id %>" style="display: inline-block">
         <%= bookData[i].bookName %> (<%= bookData[i].size %>)
                 <input type="submit" value="delete">
         
